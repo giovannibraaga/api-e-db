@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc -w -diagnostics",
     "start": "nodemon ./dist/program.js"
   },
@@ -14,6 +13,8 @@
   "dependencies": {
     "express": "^4.19.2",
     "mongoose": "^5.13.22",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.8.0",
     "typescript": "^4.9.5"
   },
   "devDependencies": {

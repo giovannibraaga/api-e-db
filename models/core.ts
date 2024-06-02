@@ -1,11 +1,11 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
 export abstract class Core extends Document {
-  titulo: string;
-  texto: string;
-  imagem: string;
-  dataPublicacao: Date;
-  tags: string;
-  links: string;
-  ativo: boolean;
+    titulo: String;
+    texto: String;
+    imagem: String;
+    dataPublicacao: Date;
+    tags: String;
+    link: String;
+    ativo: Boolean;
 }

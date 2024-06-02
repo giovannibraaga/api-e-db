@@ -1,6 +1,6 @@
 export class Fotos {
-  thumb: string;
-  thumbNail: string;
-  credito: string;
-  legenda: string;
+  thumb: String;
+  thumbNail: String;
+  credito: String;
+  legenda: String;
 }

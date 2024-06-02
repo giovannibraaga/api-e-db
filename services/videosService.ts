@@ -1,6 +1,6 @@
-import { IVideosService } from "../contracts/iVideoService";
+import { IVideosService } from "../contracts/iVideosService";
 import { Result } from "../infra/result";
-import { Videos } from "../models/video";
+import { Videos } from "../models/videos";
 import { VideosRepository } from "../repository/videoRepository";
 
 export class VideoService implements IVideosService {

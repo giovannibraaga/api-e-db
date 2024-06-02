@@ -27,35 +27,35 @@ let VideosController = class VideosController {
     constructor(_service) {
         this._service = _service;
     }
-    get(req, res) {
+    get(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const page = req.params.page ? parseInt(req.params.page) : 1;
-                const qtd = req.params.qtd ? parseInt(req.params.qtd) : 10;
+                const page = request.params.page ? parseInt(request.params.page) : 1;
+                const qtd = request.params.qtd ? parseInt(request.params.qtd) : 10;
                 let result = yield this._service.getAll(page, qtd);
-                res.status(200).json({ result });
+                response.status(200).json({ result });
             }
             catch (error) {
-                res.status(500).json({ error: error.message || error.toString() });
+                response.status(500).json({ error: error.message || error.toString() });
             }
         });
     }
-    getById(req, res) {
+    getById(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const _id = req.params.id;
+                const _id = request.params.id;
                 let result = yield this._service.get(_id);
-                res.status(200).json({ result });
+                response.status(200).json({ result });
             }
             catch (error) {
-                res.status(500).json({ error: error.message || error.toString() });
+                response.status(500).json({ error: error.message || error.toString() });
             }
         });
     }
 };
 VideosController = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IVideosService")),
+    __param(0, (0, tsyringe_1.inject)('IVideosService')),
     __metadata("design:paramtypes", [Object])
 ], VideosController);
 exports.VideosController = VideosController;

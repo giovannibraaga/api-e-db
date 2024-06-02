@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Videos } from "../models/video";
+import { Videos } from "../models/videos";
 
 const VideosSchema = new mongoose.Schema<Videos>({
   titulo: { String },

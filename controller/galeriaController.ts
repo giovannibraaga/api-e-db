@@ -1,33 +1,33 @@
-import { Request, response, Response } from "express";
-import { GaleriaService } from "../services/galeriaService";
+import { Request, Response } from "express";
+import { injectable, inject } from "tsyringe";
+import { IGaleriaService } from "../contracts/iGaleriaService";
 
-class GaleriaController {
-  private _service: GaleriaService;
 
-  constructor() {
-    this._service = new GaleriaService();
-  }
+@injectable()
+export class GaleriaController {
 
-  async get(req: Request, res: Response) {
-    try {
-      const page = req.params.page ? parseInt(req.params.page) : 1;
-      const qtd = req.params.qtd ? parseInt(req.params.qtd) : 10;
-      let result = await this._service.getAll(page, qtd);
-      res.status(200).json({ result });
-    } catch (error) {
-      res.status(500).json({ error: error.message || error.toString() });
+    constructor(@inject('IGaleriaService') private _service: IGaleriaService) {}
+
+    async get(request: Request, response: Response) {
+        try {
+            const page = request.params.page ? parseInt(request.params.page) : 1;
+            const qtd = request.params.qtd ? parseInt(request.params.qtd) : 10;
+            let result = await this._service.getAll(page, qtd);
+            response.status(200).json({ result });
+
+        } catch (error) {
+            response.status(500).json({ error: error.message || error.toString() });
+        }
     }
-  }
 
-  async getById(req: Request, res: Response) {
-    try {
-      const _id = req.params.id;
-      let result = await this._service.get(_id);
-      res.status(200).json({ result });
-    } catch (error) {
-      res.status(500).json({ error: error.message || error.toString() });
+    async getById(request: Request, response: Response) {
+        try {
+            const _id = request.params.id;
+            let result = await this._service.get(_id);
+            response.status(200).json({ result });
+
+        } catch (error) {
+            response.status(500).json({ error: error.message || error.toString() });
+        }
     }
-  }
 }
-
-export default new GaleriaController();
