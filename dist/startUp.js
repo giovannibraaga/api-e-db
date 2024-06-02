@@ -3,69 +3,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-const newsController_1 = require("./controller/newsController");
-const videosController_1 = require("./controller/videosController");
-const galeriaController_1 = require("./controller/galeriaController");
-const podcastController_1 = require("./controller/podcastController");
-const tsyringe_1 = require("tsyringe");
+const db_1 = __importDefault(require("./infra/db"));
 const express_1 = __importDefault(require("express"));
 require("./shared/container");
-const db_1 = __importDefault(require("./infra/db"));
+const newsRouter_1 = __importDefault(require("./router/newsRouter"));
+const videosRouter_1 = __importDefault(require("./router/videosRouter"));
+const galeriaRouter_1 = __importDefault(require("./router/galeriaRouter"));
+const podcastRouter_1 = __importDefault(require("./router/podcastRouter"));
 class StartUp {
     constructor() {
         this._db = new db_1.default();
-        this.news = tsyringe_1.container.resolve(newsController_1.NewsController);
-        this.videos = tsyringe_1.container.resolve(videosController_1.VideosController);
-        this.galeria = tsyringe_1.container.resolve(galeriaController_1.GaleriaController);
-        this.podcast = tsyringe_1.container.resolve(podcastController_1.PodcastController);
         this.app = (0, express_1.default)();
         this._db.createConnection();
         this.routes();
     }
     routes() {
-        /**
-         * @description health check
-         */
         this.app.route("/").get((req, res) => {
             res.send({ versao: "0.0.3" });
         });
-        /*news*/
-        this.app
-            .route("/api/v1/news/:page/:qtd")
-            .get((req, res) => {
-            return this.news.get(req, res);
-        });
-        this.app.route("/api/v1/news/:id").get((req, res) => {
-            return this.news.getById(req, res);
-        });
-        /*videos*/
-        this.app
-            .route("/api/v1/videos/:page/:qtd")
-            .get((req, res) => {
-            return this.videos.get(req, res);
-        });
-        this.app.route("/api/v1/videos/:id").get((req, res) => {
-            return this.videos.getById(req, res);
-        });
-        /*galeria*/
-        this.app
-            .route("/api/v1/galeria/:page/:qtd")
-            .get((req, res) => {
-            return this.galeria.get(req, res);
-        });
-        this.app.route("/api/v1/galeria/:id").get((req, res) => {
-            return this.galeria.getById(req, res);
-        });
-        /*podcast*/
-        this.app
-            .route("/api/v1/podcast/:page/:qtd")
-            .get((req, res) => {
-            return this.podcast.get(req, res);
-        });
-        this.app.route("/api/v1/podcast/:id").get((req, res) => {
-            return this.podcast.getById(req, res);
-        });
+        this.app.use("/", newsRouter_1.default);
+        this.app.use("/", videosRouter_1.default);
+        this.app.use("/", galeriaRouter_1.default);
+        this.app.use("/", podcastRouter_1.default);
     }
 }
 exports.default = new StartUp();
