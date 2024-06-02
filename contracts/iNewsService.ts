@@ -1,5 +1,4 @@
-import { Result } from "../infra/result";
-export interface INewsService {
-get(id: string);
-getAll(page: number, qtd: number): Promise<Result>;
-}
+import { News } from "../models/news";
+import { IService } from "./iService";
+
+export interface INewsService extends IService<News> {}
