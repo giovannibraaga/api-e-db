@@ -21,9 +21,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GaleriaController = void 0;
+exports.PodcastController = void 0;
 const tsyringe_1 = require("tsyringe");
-let GaleriaController = class GaleriaController {
+let PodcastController = class PodcastController {
     constructor(_service) {
         this._service = _service;
     }
@@ -53,9 +53,9 @@ let GaleriaController = class GaleriaController {
         });
     }
 };
-GaleriaController = __decorate([
+PodcastController = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IGaleriaService")),
+    __param(0, (0, tsyringe_1.inject)("IPodcastService")),
     __metadata("design:paramtypes", [Object])
-], GaleriaController);
-exports.GaleriaController = GaleriaController;
+], PodcastController);
+exports.PodcastController = PodcastController;

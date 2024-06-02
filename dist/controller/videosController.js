@@ -55,7 +55,7 @@ let VideosController = class VideosController {
 };
 VideosController = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)('IVideosService')),
+    __param(0, (0, tsyringe_1.inject)("IVideosService")),
     __metadata("design:paramtypes", [Object])
 ], VideosController);
 exports.VideosController = VideosController;

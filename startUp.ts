@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { NewsController } from "./controller/newsController";
 import { VideosController } from "./controller/videosController";
 import { GaleriaController } from "./controller/galeriaController";
+import { PodcastController } from "./controller/podcastController";
 import { container } from "tsyringe";
 import express, { Application, Request, Response } from "express";
 import "./shared/container";
@@ -14,6 +15,7 @@ class StartUp {
   private news = container.resolve(NewsController);
   private videos = container.resolve(VideosController);
   private galeria = container.resolve(GaleriaController);
+  private podcast = container.resolve(PodcastController);
   constructor() {
     this.app = express();
     this._db.createConnection();
@@ -54,6 +56,16 @@ class StartUp {
 
     this.app.route("/api/v1/galeria/:id").get((req: Request, res: Response) => {
       return this.galeria.getById(req, res);
+    });
+    /*podcast*/
+    this.app
+      .route("/api/v1/podcast/:page/:qtd")
+      .get((req: Request, res: Response) => {
+        return this.podcast.get(req, res);
+      });
+
+    this.app.route("/api/v1/podcast/:id").get((req: Request, res: Response) => {
+      return this.podcast.getById(req, res);
     });
   }
 }

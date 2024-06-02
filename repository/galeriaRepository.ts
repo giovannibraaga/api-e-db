@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import { Fotos } from "../models/fotos";
 import { Galeria } from "../models/galeria";
 

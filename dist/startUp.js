@@ -7,6 +7,7 @@ require("reflect-metadata");
 const newsController_1 = require("./controller/newsController");
 const videosController_1 = require("./controller/videosController");
 const galeriaController_1 = require("./controller/galeriaController");
+const podcastController_1 = require("./controller/podcastController");
 const tsyringe_1 = require("tsyringe");
 const express_1 = __importDefault(require("express"));
 require("./shared/container");
@@ -17,6 +18,7 @@ class StartUp {
         this.news = tsyringe_1.container.resolve(newsController_1.NewsController);
         this.videos = tsyringe_1.container.resolve(videosController_1.VideosController);
         this.galeria = tsyringe_1.container.resolve(galeriaController_1.GaleriaController);
+        this.podcast = tsyringe_1.container.resolve(podcastController_1.PodcastController);
         this.app = (0, express_1.default)();
         this._db.createConnection();
         this.routes();
@@ -54,6 +56,15 @@ class StartUp {
         });
         this.app.route("/api/v1/galeria/:id").get((req, res) => {
             return this.galeria.getById(req, res);
+        });
+        /*podcast*/
+        this.app
+            .route("/api/v1/podcast/:page/:qtd")
+            .get((req, res) => {
+            return this.podcast.get(req, res);
+        });
+        this.app.route("/api/v1/podcast/:id").get((req, res) => {
+            return this.podcast.getById(req, res);
         });
     }
 }

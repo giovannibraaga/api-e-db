@@ -1,7 +1,7 @@
 import { INewsService } from "../contracts/iNewsService";
 import { Result } from "../infra/result";
-import { NewsRepository } from "../repository/newsRepository";
 import { News } from "../models/news";
+import { NewsRepository } from "../repository/newsRepository";
 
 export class NewsService implements INewsService {
   async get(_id: string): Promise<News> {
@@ -10,7 +10,7 @@ export class NewsService implements INewsService {
   }
 
   async getAll(page: number, qtd: number): Promise<Result<News>> {
-    let result = new Result();
+    let result = new Result<News>();
     result.Page = page;
     result.Qtd = qtd;
     result.Total = await NewsRepository.count({});

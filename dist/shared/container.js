@@ -5,6 +5,7 @@ const tsyringe_1 = require("tsyringe");
 const galeriaService_1 = require("../services/galeriaService");
 const newsService_1 = require("../services/newsService");
 const videosService_1 = require("../services/videosService");
+const podcastService_1 = require("../services/podcastService");
 tsyringe_1.container.register("INewsService", {
     useClass: newsService_1.NewsService,
 });
@@ -13,4 +14,7 @@ tsyringe_1.container.register("IVideosService", {
 });
 tsyringe_1.container.register("IGaleriaService", {
     useClass: galeriaService_1.GaleriaService,
+});
+tsyringe_1.container.register("IPodcastService", {
+    useClass: podcastService_1.PodcastService,
 });

@@ -55,7 +55,7 @@ let NewsController = class NewsController {
 };
 NewsController = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)('INewsService')),
+    __param(0, (0, tsyringe_1.inject)("INewsService")),
     __metadata("design:paramtypes", [Object])
 ], NewsController);
 exports.NewsController = NewsController;

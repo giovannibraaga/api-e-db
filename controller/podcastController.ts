@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import { IGaleriaService } from "../contracts/iGaleriaService";
+import { IPodcastService } from "../contracts/iPodcastService";
 
 @injectable()
-export class GaleriaController {
-  constructor(@inject("IGaleriaService") private _service: IGaleriaService) {}
+export class PodcastController {
+  constructor(@inject("IPodcastService") private _service: IPodcastService) {}
 
   async get(request: Request, response: Response) {
     try {
